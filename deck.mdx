@@ -1,23 +1,143 @@
 import { Head } from 'mdx-deck'
+import { CodeSurfer } from "mdx-deck-code-surfer"
 
-export { default as theme } from './theme'
+export { future as theme } from 'mdx-deck/themes'
 
 <Head>
-  <title>Presentation Title</title>
+  <title>Unit Testing</title>
 </Head>
 
-# Hello
+## 'Unit' Testing with .Net ✅
 
 ---
 
-## Edit this file
+# Architecture
 
-To create your presentation
-
-```notes
-- Create speaker notes in fenced code blocks
-```
+<p>Being able to correctly unit test your applications implies that your app is set up a certain way. If it isn't, then it immediately becomes much more difficult to actually write unit tests.</p>
 
 ---
 
-<https://github.com/jxnblk/mdx-deck>
+## What is Needed
+
+ - Dependency Injection / IoC (Inversion of Control)
+ - Mocking library (Moq)
+ - Test Running framework (MSTest, NUnit, XUnit, etc)
+
+---
+
+# Why are they needed? 🤔
+
+---
+
+### Dependency Injection
+  - Inject important objects
+  - Better mocking
+  - Also makes code not in unit tests better
+
+---
+
+## Mocking Library
+
+  - Less manual configuration
+  - Only test objects/methods that need to be tested
+
+---
+
+## Test Running Framework
+
+  - Can't run the tests you write if you don't have one!
+
+---
+
+# Setup
+
+<p>The code for this project is an ASP.NET Web API 2.2 project, which is a .NET Framework 4.5+ web application.</p>
+<p>It supplies a RESTful web service that serves json data.</p>
+
+---
+
+## NuGet Packages
+
+ - DI/IoC -> AutoFac
+ - Mocking Library -> Moq
+ - Test Runner -> MSTest
+
+### Alternative DI/IoC
+
+List of alternatives from Scott Hanselman
+https://bit.ly/2Esv9bq
+
+---
+
+<CodeSurfer
+  title="Dependency Injection"
+  code={require("!raw-loader!./snippets/AutoFacService.cs")}
+  lang="clike"
+  showNumbers={false}
+  dark={false}
+  steps={[
+    { },
+    { lines: [11, 12], notes: "We need to register the API Controllers" },
+    { lines: [20, 21], notes: "Registering types/objects is vital for dependency injection" },
+    { range: [23, 26] }
+  ]}
+/>
+
+---
+
+<CodeSurfer 
+  title="Global.asax.cs"
+  code={require("!raw-loader!./snippets/Global.asax.cs")}
+  lang="clike"
+  showNumbers={true}
+  dark={false}
+  steps={[
+    {},
+    { lines: [5]}
+  ]}
+/>
+---
+
+<CodeSurfer
+  title="AutoMapper"
+  code={require("!raw-loader!./snippets/AutoMapper.cs")}
+  lang="clike"
+  showNumbers={false}
+  dark={false}
+  steps={[
+    {},
+    { range: [1, 17]},
+    { range: [19, 76] }
+  ]}
+/>
+
+
+---
+### Adding a Test Project
+ - Right-click Solution ▶️ Add New Project ▶️ Visual C# ️️▶️ Test ▶️ MSTest Test Project.
+ - Name it similar to your main project/solution, but append .Tests at the end
+ - Add A reference to your main project
+ - Add Moq NuGet Package
+ - Add other (service) references your code may use (ie. web service)
+---
+
+<CodeSurfer 
+  code={require("!raw-loader!./snippets/ExControllerTests.cs")}
+  lang="clike"
+  showNumbers={false}
+  dark={false}
+  steps={[
+    {},
+    { range: [14, 27] },
+    { range: [29, 38] },
+    { range: [41, 72] },
+  ]}
+/>
+
+---
+
+## Lets take a look at the actual project 😃
+
+#### This presentation was built with MDX - deck
+
+#### <https://github.com/jxnblk/mdx-deck>
